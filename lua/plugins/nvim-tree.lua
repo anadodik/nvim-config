@@ -10,15 +10,6 @@ require("nvim-tree").setup({
 	},
 })
 
-local function toggle_replace()
-	local view = require("nvim-tree.view")
-	if view.is_visible() then
-		view.close()
-	else
-		require("nvim-tree").open_replacing_current_buffer()
-	end
-end
-
 local function close_if_last(opts)
 	local open_windows = vim.api.nvim_tabpage_list_wins(0)
 	local non_float_wins = vim.tbl_filter(function(k)
@@ -44,7 +35,7 @@ local function close_if_last(opts)
 	end
 end
 
-vim.api.nvim_set_keymap("n", "-", "", { silent = true, callback = toggle_replace })
+vim.api.nvim_set_keymap("n", "-", "", { silent = true, callback = require("nvim-tree").toggle })
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, { pattern = "*", callback = close_if_last, nested = true })
 

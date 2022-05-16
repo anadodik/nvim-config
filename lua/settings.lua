@@ -24,7 +24,8 @@ opt.mouse = "a"
 opt.number = true
 opt.relativenumber = true
 opt.wrap = false
-opt.timeoutlen = 100
+opt.timeoutlen = 1000
+opt.ttimeoutlen = 1000
 opt.updatetime = 250
 
 -- Theme

@@ -9,6 +9,7 @@ local servers = {
 		},
 	},
 	sumneko_lua = {},
+	svelte = {},
 	tsserver = {},
 }
 
@@ -55,7 +56,7 @@ local opts = {
 	on_attach = on_attach,
 	capabilities = capabilities,
 	flags = {
-		debounce_text_changes = 500,
+		debounce_text_changes = 1000,
 	},
 }
 

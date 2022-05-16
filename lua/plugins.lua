@@ -102,6 +102,8 @@ return require("packer").startup(function(use)
 			})
 			vim.api.nvim_set_keymap("n", "]b", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
 			vim.api.nvim_set_keymap("n", "[b", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
+			-- vim.api.nvim_set_keymap("n", "<F11>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
+			-- vim.api.nvim_set_keymap("n", "<F24>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
 		end,
 	})
 
@@ -234,18 +236,16 @@ return require("packer").startup(function(use)
 			require("toggleterm").setup({
 				shade_terminals = false,
 			})
-			function _G.set_terminal_keymaps()
-				local opts = { noremap = true }
-				vim.api.nvim_buf_set_keymap(0, "t", [[<C-[>]], [[<C-\><C-n>]], opts)
-				vim.api.nvim_buf_set_keymap(0, "t", "<C-[>", [[<C-\><C-n>]], opts)
-				vim.api.nvim_buf_set_keymap(0, "t", "<Esc>", [[<C-\><C-n>]], opts)
-				-- vim.api.nvim_buf_set_keymap(0, "t", "jk", [[<C-\><C-n>]], opts)
-				vim.api.nvim_buf_set_keymap(0, "t", "<C-w>h", [[<C-\><C-n><C-W>h]], opts)
-				vim.api.nvim_buf_set_keymap(0, "t", "<C-w>j", [[<C-\><C-n><C-W>j]], opts)
-				vim.api.nvim_buf_set_keymap(0, "t", "<C-w>k", [[<C-\><C-n><C-W>k]], opts)
-				vim.api.nvim_buf_set_keymap(0, "t", "<C-w>l", [[<C-\><C-n><C-W>l]], opts)
-			end
-			vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+			-- function _G.set_terminal_keymaps()
+			local opts = { noremap = true }
+			vim.api.nvim_buf_set_keymap(0, "t", [[<C-[>]], [[<C-\><C-n>]], opts)
+			vim.api.nvim_buf_set_keymap(0, "t", "<Esc>", [[<C-\><C-n>]], opts)
+			vim.api.nvim_buf_set_keymap(0, "t", [[<C-W>h]], [[<C-\><C-n><C-W>h]], opts)
+			vim.api.nvim_buf_set_keymap(0, "t", [[<C-W>k]], [[<C-\><C-n><C-W>k]], opts)
+			vim.api.nvim_buf_set_keymap(0, "t", [[<C-W>j]], [[<C-\><C-n><C-W>j]], opts)
+			vim.api.nvim_buf_set_keymap(0, "t", [[<C-W>l]], [[<C-\><C-n><C-W>l]], opts)
+			-- end
+			-- vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 			local command_center = require("command_center")
 			command_center.add({
@@ -277,6 +277,13 @@ return require("packer").startup(function(use)
 			require("neogit").setup({ integrations = { diffview = true } })
 		end,
 	})
+
+	vim.api.nvim_set_keymap("n", " ", [[<cmd>Telescope command_center<CR>]], {})
+	vim.api.nvim_set_keymap("t", " ", [[<cmd>Telescope command_center<CR>]], {})
+	vim.api.nvim_set_keymap("n", "Ð", [[<cmd>Telescope command_center<CR>]], {})
+	vim.api.nvim_set_keymap("t", "Ð", [[<cmd>Telescope command_center<CR>]], {})
+	vim.api.nvim_set_keymap("n", "<F11>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("n", "<F24>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
 
 	if packer_bootstrap then
 		require("packer").sync()

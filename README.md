@@ -6,8 +6,7 @@ Features:
 - [x] which-key context menu for LSP actions.
 - [x] `command_center` LSP command search.
 - [x] nvim-tree which acts like a persistent drawer.
+- [x] Deactivating the LSP formatting for a client changed in v0.7.
 
 Missing features:
-- [ ] Deactivating the LSP formatting for a client changed in v0.7.
-- [ ] Activate conda environment automatically.
 - [ ] Finish adding all necessary IDE keymaps.

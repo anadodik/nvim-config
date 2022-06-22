@@ -24,10 +24,10 @@ lsp_signature.setup({
 local format_timeout = 1000
 
 local enable_formatting = function(client)
-	if client.resolved_capabilities.document_formatting then
+	if client.server_capabilities.documentFormattingProvider then
 		vim.api.nvim_create_autocmd(string.format("BufWritePre %s", "*"), {
 			callback = function()
-				vim.lsp.buf.formatting_sync(nil, format_timeout)
+				vim.lsp.buf.format({timeout_ms = format_timeout})
 			end,
 		})
 	end
@@ -38,8 +38,8 @@ local function on_attach(client, bufnr)
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
 	if client.name ~= "null-ls" then
-		client.resolved_capabilities.document_formatting = false
-		client.resolved_capabilities.document_range_formatting = false
+		client.server_capabilities.documentFormattingProvider = false
+		client.server_capabilities.documentRangeFormattingProvider = false
 	else
 		-- Use LSP as the handler for formatexpr.
 		vim.api.nvim_buf_set_option(0, "formatexpr", "v:lua.vim.lsp.formatexpr()")
